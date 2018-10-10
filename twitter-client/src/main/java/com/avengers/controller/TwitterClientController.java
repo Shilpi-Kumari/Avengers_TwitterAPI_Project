@@ -59,12 +59,12 @@ public class TwitterClientController {
 	}
 	
 	/*
-	 * Below code is to search the top 10 tweets related to search input (Eg:Cricket)
+	 * Below code is to search the top 5 tweets related to search input (Eg:Cricket)
 	 */
 	@RequestMapping(value = "/search/tweets/{searchInput}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<Tweet> searchTweets(@PathVariable final String searchInput) {
-		return twitter.searchOperations().search(searchInput,10).getTweets();
+		return twitter.searchOperations().search(searchInput,5).getTweets();
 	}
 	
 	/*
@@ -83,12 +83,6 @@ public class TwitterClientController {
 	@ResponseBody
 	public List<Tweet> usersSearch(@PathVariable final String searchInput) {
 		return twitter.searchOperations().search(searchInput,5).getTweets();
-	}
-	
-	@RequestMapping(value = "/friends/ids", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody
-	public  CursoredList<Long> getFriendsIds() {
-		return twitter.friendOperations().getFriendIds();
 	}
 	
 }
