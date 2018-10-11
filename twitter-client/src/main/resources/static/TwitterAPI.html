@@ -179,6 +179,20 @@ $(function() {
                 }
           });
       });
+    
+      //Returns up to 100 of the first retweets of a given tweet.(ex: Football)
+      $('#First100Retweets').click(function() {
+          $.ajax({
+              type: 'GET',
+              url: '/api.twitter.com/1.1/statuses/retweets/Shilpi',
+              success :function(data) {
+                  var json = JSON.stringify(data);
+              	 var myWindow = window.open("", "First_100_Retweets", "width=200,height=100");
+              	 myWindow.document.write("<h1>First_100_Retweets:</h1> <br>");
+              	    myWindow.document.write(json);
+                }
+          });
+      })
 });
 </script>
 
@@ -201,6 +215,7 @@ $(function() {
 <input type=button value='Search_Input_Tweets' id="searchinputtweets">
 <input type=button value='Display_Tweet_Based_On_ID' id="searchspecifictweets">
 <input type=button value='User_Search_Input_Tweets' id="usersearchinputtweets">
+<input type=button value='First_100_Retweets' id="First100Retweets">
 <br> <br>
 <input type=button onClick="parent.location='HomePage.html'" value='Back'>
 </div>
