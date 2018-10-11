@@ -41,11 +41,32 @@
     <version>1.4.0.RELEASE</version>
 </dependency>
 		
+<dependency>
+			<groupId>oauth.signpost</groupId>
+			<artifactId>signpost-core</artifactId>
+			<version>1.2.1.2</version>
+		</dependency>
+		
 		<dependency>
-    <groupId>org.springframework.social</groupId>
-    <artifactId>spring-social-twitter</artifactId>
-    <version>1.1.2.RELEASE</version>
-</dependency>
+			<groupId>oauth.signpost</groupId>
+			<artifactId>signpost-commonshttp4</artifactId>
+			<version>1.2.1.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
+
+<!--  Gson: Java to Json conversion -->
+    <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.2.2</version>
+        <scope>compile</scope>
+    </dependency>
+
 	</dependencies>
 
 	<build>

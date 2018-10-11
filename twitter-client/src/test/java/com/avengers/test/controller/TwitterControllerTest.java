@@ -17,7 +17,7 @@ public class TwitterControllerTest extends AbstractClass {
 	
 	@Test
 	public void testHomelineTweets() throws Exception {
-		String uri = "/api.twitter.com/1.1/statuses/home_timeline";
+		String uri = "/api.twitter.com/1.1/getHometimeline";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int statusCode = mvcResult.getResponse().getStatus();
@@ -26,7 +26,7 @@ public class TwitterControllerTest extends AbstractClass {
 	
 	@Test
 	public void testMentionsTimelineTweets() throws Exception {
-		String uri = "/api.twitter.com/1.1/statuses/mentions_timeline";
+		String uri = "/api.twitter.com/1.1/getLanguage";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int statusCode = mvcResult.getResponse().getStatus();
@@ -35,7 +35,7 @@ public class TwitterControllerTest extends AbstractClass {
 	
 	@Test
 	public void testUserTimelineTweets() throws Exception {
-		String uri = "/api.twitter.com/1.1/statuses/user_timeline";
+		String uri = "/api.twitter.com/1.1/getTrendsAvailable";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int statusCode = mvcResult.getResponse().getStatus();
@@ -43,8 +43,8 @@ public class TwitterControllerTest extends AbstractClass {
 	}
 	
 	@Test
-	public void testReTweetsOfMe() throws Exception {
-		String uri = "/api.twitter.com/1.1/statuses/retweets_of_me";
+	public void testGetUsertimline() throws Exception {
+		String uri = "/api.twitter.com/1.1/getUserTimeline";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int statusCode = mvcResult.getResponse().getStatus();
@@ -52,8 +52,8 @@ public class TwitterControllerTest extends AbstractClass {
 	}
 	
 	@Test
-	public void testSearchTweets() throws Exception {
-		String uri = "/api.twitter.com/1.1/search/tweets/cricket";
+	public void testgetLanguagePrivacy() throws Exception {
+		String uri = "/api.twitter.com/1.1/getLanguagePrivacy";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int statusCode = mvcResult.getResponse().getStatus();
@@ -61,8 +61,8 @@ public class TwitterControllerTest extends AbstractClass {
 	}
 	
 	@Test
-	public void testSearchTweetBasedOnId() throws Exception {
-		String uri = "/api.twitter.com/1.1/statuses/show/sharukh";
+	public void testgetFavouriteList() throws Exception {
+		String uri = "/api.twitter.com/1.1/getFavouriteList";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int statusCode = mvcResult.getResponse().getStatus();
@@ -70,8 +70,8 @@ public class TwitterControllerTest extends AbstractClass {
 	}
 	
 	@Test
-	public void testUserSearchTweets() throws Exception {
-		String uri = "/api.twitter.com/1.1/users/search/sumanth";
+	public void testsearchHashTag() throws Exception {
+		String uri = "/api.twitter.com/1.1/searchHashTag/dhoni";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int statusCode = mvcResult.getResponse().getStatus();
@@ -79,8 +79,8 @@ public class TwitterControllerTest extends AbstractClass {
 	}
 	
 	@Test
-	public void testUserSearch100Tweets() throws Exception {
-		String uri = "/api.twitter.com/1.1/users/search/shilpi";
+	public void testgetFollowersList() throws Exception {
+		String uri = "/api.twitter.com/1.1/getFollowersList";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
 		int statusCode = mvcResult.getResponse().getStatus();

@@ -1,15 +1,15 @@
 package com.avengers.controller;
 
-import java.util.*;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.twitter.api.Tweet;
-import org.springframework.social.twitter.api.Twitter;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.avengers.service.TwitterClientService;
 
 
 @RestController
@@ -18,84 +18,62 @@ public class TwitterClientController {
 	
 	public static final String TWITTER_BASE_URL = "api.twitter.com/1.1";
 	
-	@Autowired 
-	private Twitter twitter;
+	@Autowired
+	private TwitterClientService twitterClientService;
 	
-	/*
-	 * Returns a collection of the most recent Tweets and retweets posted by the authenticating user and the users they follow
-	 */
-	@RequestMapping(value = "/statuses/home_timeline", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getHometimeline", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Tweet> getHomelineTweets() {
-		return twitter.searchOperations().search("home_timeline",10).getTweets();
+	public List<String> getHomelineTweets() {
+		List<String> twitterResponse = twitterClientService.getHomelineTweeets();
+		return twitterResponse;
 	}
 	
-	/*
-	 * Returns the 10 most recent mentions for the authenticating user
-	 */
-	@RequestMapping(value = "/statuses/mentions_timeline", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getLanguage", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Tweet> getMentionsTimelineTweets() {
-		return twitter.searchOperations().search("mentions_timeline",10).getTweets();
+	public List<String> getLanguageSupport() {
+		List<String> twitterResponse = twitterClientService.getLanguageSupport();
+		return twitterResponse;
 	}
 	
-	/*
-	 * Returns a collection of the most recent Tweets posted by the user
-	 */
-	@RequestMapping(value = "/statuses/user_timeline", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getTrendsAvailable", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Tweet> getUserTimelineTweets() {
-		return twitter.searchOperations().search("user_timeline",10).getTweets();
+	public List<String> getTrendsAvailable() {
+		List<String> twitterResponse = twitterClientService.getTrendsAvailable();
+		return twitterResponse;
 	}
 	
-	/*
-	 * Returns the most recent tweets authored by the authenticating user that have recently been re-tweeted by others. 
-	 */
-	@RequestMapping(value = "/statuses/retweets_of_me", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getUserTimeline", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Tweet> getReTweets() {
-		return twitter.searchOperations().search("retweets_of_me",10).getTweets();
+	public List<String> getFriendsList() {
+		List<String> twitterResponse = twitterClientService.getUserTimeline();
+		return twitterResponse;
 	}
 	
-	/*
-	 * Below code is to search the top 5 tweets related to search input (Eg:Cricket)
-	 */
-	@RequestMapping(value = "/search/tweets/{searchInput}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getLanguagePrivacy", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Tweet> searchTweets(@PathVariable final String searchInput) {
-		return twitter.searchOperations().search(searchInput,5).getTweets();
+	public List<String> getLanguagePrivacy() {
+		List<String> twitterResponse = twitterClientService.getLanguagePrivacy();
+		return twitterResponse;
 	}
 	
-	/*
-	 * Returns a single Tweet, specified by the id parameter (Eg:Sharukh)
-	 */
-	@RequestMapping(value = "/statuses/show/{input}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getFavouriteList", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Tweet> showSpecificTweet(@PathVariable final String input) {
-		return twitter.searchOperations().search(input,1).getTweets();
+	public List<String> getFavouriteList() {
+		List<String> twitterResponse = twitterClientService.getFavouriteList();
+		return twitterResponse;
 	}
 	
-	/*
-	 * Provides a simple, relevance-based search interface to public user accounts on Twitter.
-	 */
-	@RequestMapping(value = "/users/search/{searchInput}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/searchHashTag/{searchInput}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Tweet> usersSearch(@PathVariable final String searchInput) {
-		return twitter.searchOperations().search(searchInput,5).getTweets();
+	public List<String> searchHashTag(@PathVariable String searchInput) {
+		List<String> twitterResponse = twitterClientService.searchHashTag(searchInput);
+		return twitterResponse;
 	}
 	
-	//Returns up to 100 of the first retweets of a given tweet.(ex: Football)
-	@RequestMapping(value = "statuses/retweets/{searchInput}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getFollowersList", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<String> search100Tweets(@PathVariable final String searchInput) {
-		List<String> tweets = new ArrayList<String>();
-		List<Tweet> rawTweets = twitter.searchOperations().search(searchInput,100).getTweets();
-		Integer index = 0;
-		for (Tweet twt: rawTweets) {
-			index++;
-			tweets.add(twt.getUnmodifiedText() + "\nEnd of Tweet: " + index + "\n");
-		}
-		return tweets;
+	public List<String> getFollowersList() {
+		List<String> twitterResponse = twitterClientService.getFollowersList();
+		return twitterResponse;
 	}
-			
 }
