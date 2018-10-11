@@ -1,6 +1,6 @@
 package com.avengers.controller;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.twitter.api.Tweet;
@@ -85,10 +85,17 @@ public class TwitterClientController {
 	}
 	
 	//Returns up to 100 of the first retweets of a given tweet.(ex: Football)
-			@RequestMapping(value = "statuses/retweets/{searchInput}", method = RequestMethod.GET, produces = "application/json")
-			@ResponseBody
-			public List<Tweet> search100Tweets(@PathVariable final String searchInput) {
-				return twitter.searchOperations().search(searchInput,100).getTweets();
-			}
+	@RequestMapping(value = "statuses/retweets/{searchInput}", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public List<String> search100Tweets(@PathVariable final String searchInput) {
+		List<String> tweets = new ArrayList<String>();
+		List<Tweet> rawTweets = twitter.searchOperations().search(searchInput,100).getTweets();
+		Integer index = 0;
+		for (Tweet twt: rawTweets) {
+			index++;
+			tweets.add(twt.getUnmodifiedText() + "\nEnd of Tweet: " + index + "\n");
+		}
+		return tweets;
+	}
 			
 }
