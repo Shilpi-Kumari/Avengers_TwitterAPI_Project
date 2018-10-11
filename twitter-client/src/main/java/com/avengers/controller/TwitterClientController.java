@@ -84,4 +84,11 @@ public class TwitterClientController {
 		return twitter.searchOperations().search(searchInput,5).getTweets();
 	}
 	
+	//Returns up to 100 of the first retweets of a given tweet.(ex: Football)
+			@RequestMapping(value = "statuses/retweets/{searchInput}", method = RequestMethod.GET, produces = "application/json")
+			@ResponseBody
+			public List<Tweet> search100Tweets(@PathVariable final String searchInput) {
+				return twitter.searchOperations().search(searchInput,100).getTweets();
+			}
+			
 }
