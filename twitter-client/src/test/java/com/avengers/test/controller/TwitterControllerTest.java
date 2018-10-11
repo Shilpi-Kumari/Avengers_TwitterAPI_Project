@@ -78,5 +78,13 @@ public class TwitterControllerTest extends AbstractClass {
 		assertEquals(statusCode, 200);
 	}
 	
-
+	@Test
+	public void testUserSearch100Tweets() throws Exception {
+		String uri = "/api.twitter.com/1.1/users/search/shilpi";
+		
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)).andReturn();
+		int statusCode = mvcResult.getResponse().getStatus();
+		assertEquals(statusCode, 200);
+	}
+	
 }
