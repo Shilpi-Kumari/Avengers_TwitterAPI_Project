@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.avengers.service.TwitterClientService;
 
+/*
+ *@author Sumanth Ravipati 
+ */
 
 @RestController
 @RequestMapping(TwitterClientController.TWITTER_BASE_URL)
@@ -21,12 +24,19 @@ public class TwitterClientController {
 	@Autowired
 	private TwitterClientService twitterClientService;
 	
+	/*
+	 * Returns a collection of the most recent Tweets and retweets posted by the authenticating user and the users they follow.
+	 */
 	@RequestMapping(value = "/getHometimeline", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<String> getHomelineTweets() {
 		List<String> twitterResponse = twitterClientService.getHomelineTweeets();
 		return twitterResponse;
 	}
+	
+	/*
+	 * Returns the list of languages supported by Twitter along with their ISO 639-1 code.
+	 */
 	
 	@RequestMapping(value = "/getLanguage", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
@@ -35,6 +45,9 @@ public class TwitterClientController {
 		return twitterResponse;
 	}
 	
+	/*
+	 * Returns the locations that Twitter has trending topic information for.
+	 */
 	@RequestMapping(value = "/getTrendsAvailable", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<String> getTrendsAvailable() {
@@ -42,6 +55,9 @@ public class TwitterClientController {
 		return twitterResponse;
 	}
 	
+	/*
+	 * Returns a cursored collection of user objects for every user the specified user is following (otherwise known as their "friends").
+	 */
 	@RequestMapping(value = "/getUserTimeline", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<String> getFriendsList() {
@@ -49,6 +65,13 @@ public class TwitterClientController {
 		return twitterResponse;
 	}
 	
+	/*
+	 *@author Shilpi Kumari 
+	 */
+	
+	/*
+	 * Returns Twitter's Privacy Policy.
+	 */
 	@RequestMapping(value = "/getLanguagePrivacy", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<String> getLanguagePrivacy() {
@@ -56,6 +79,9 @@ public class TwitterClientController {
 		return twitterResponse;
 	}
 	
+	/*
+	 * Returns the 20 most recent Tweets favorited by the authenticating or specified user.
+	 */
 	@RequestMapping(value = "/getFavouriteList", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<String> getFavouriteList() {
@@ -63,6 +89,9 @@ public class TwitterClientController {
 		return twitterResponse;
 	}
 	
+	/*
+	 * Returns a collection of relevant Tweets matching a specified query.
+	 */
 	@RequestMapping(value = "/searchHashTag/{searchInput}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<String> searchHashTag(@PathVariable String searchInput) {
@@ -70,6 +99,9 @@ public class TwitterClientController {
 		return twitterResponse;
 	}
 	
+	/*
+	 * Returns a cursored collection of user objects for users following the specified user.
+	 */
 	@RequestMapping(value = "/getFollowersList", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<String> getFollowersList() {

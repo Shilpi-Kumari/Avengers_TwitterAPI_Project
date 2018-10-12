@@ -13,6 +13,9 @@ import org.springframework.stereotype.Component;
 import com.avengers.helper.TwitterHelper;
 import com.avengers.service.TwitterClientService;
 
+/*
+ * author sumanth ravipati
+ */
 @Component
 public class TwitterClientServiceImpl implements TwitterClientService{
 	
@@ -64,6 +67,7 @@ public class TwitterClientServiceImpl implements TwitterClientService{
 		return responseList;
 	}
 
+	
 	@Override
 	public List<String> getTrendsAvailable() {
 		List<String> responseList = new ArrayList<String>();
@@ -87,6 +91,9 @@ public class TwitterClientServiceImpl implements TwitterClientService{
 		return responseList;
 	}
 	
+	/*
+	 * author: Shilpi Kumari
+	 */
 	@Override
 	public List<String> getUserTimeline() {
 		List<String> responseList = new ArrayList<String>();

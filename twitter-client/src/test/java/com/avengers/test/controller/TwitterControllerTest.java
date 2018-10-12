@@ -1,3 +1,7 @@
+/*
+ * @author Sai Kiran
+ * JUnit test cases  to validate the response for Twitter APIs
+ */
 package com.avengers.test.controller;
 
 import static org.junit.Assert.assertEquals;
